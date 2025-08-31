@@ -11,6 +11,8 @@ import SpecificationsPage from './pages/SpecificationsPage';
 import ContactPage from './pages/ContactPage';
 import ProductDetail from './components/ProductDetail';
 import Products from './components/Products';
+import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/specifications" element={<SpecificationsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
       <Footer />
     </div>

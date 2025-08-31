@@ -1,10 +1,12 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import ProductFilter from './ProductFilter';
+import { Search, X } from 'lucide-react';
 
 const Products: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = React.useState('');
   const [selectedPriceRange, setSelectedPriceRange] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   const products = [
     {
@@ -74,12 +76,20 @@ const Products: React.FC = () => {
       }
     }
     
-    return categoryMatch && priceMatch;
+    const searchMatch = !searchQuery || 
+      product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    return categoryMatch && priceMatch && searchMatch;
   });
 
   const handleClearFilters = () => {
     setSelectedCategory('');
     setSelectedPriceRange('');
+    setSearchQuery('');
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery('');
   };
 
   return (
@@ -98,22 +108,46 @@ const Products: React.FC = () => {
 
         {/* Filter Section */}
         <div className="mb-12">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div className="flex items-center space-x-4">
               <span className="text-gray-700 font-medium">
                 Showing {filteredProducts.length} of {products.length} bikes
               </span>
             </div>
             
-            <ProductFilter
-              categories={categories}
-              priceRanges={priceRanges}
-              selectedCategory={selectedCategory}
-              selectedPriceRange={selectedPriceRange}
-              onCategoryChange={setSelectedCategory}
-              onPriceRangeChange={setSelectedPriceRange}
-              onClearFilters={handleClearFilters}
-            />
+            <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+              {/* Search Input */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search by name..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="block w-full md:w-64 pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white text-sm"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  >
+                    <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                  </button>
+                )}
+              </div>
+              
+              <ProductFilter
+                categories={categories}
+                priceRanges={priceRanges}
+                selectedCategory={selectedCategory}
+                selectedPriceRange={selectedPriceRange}
+                onCategoryChange={setSelectedCategory}
+                onPriceRangeChange={setSelectedPriceRange}
+                onClearFilters={handleClearFilters}
+              />
+            </div>
           </div>
         </div>
 

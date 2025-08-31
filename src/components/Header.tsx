@@ -63,6 +63,12 @@ const Header: React.FC = () => {
               Specifications
             </button>
             <button 
+              onClick={() => navigate('/blog')}
+              className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium"
+            >
+              Blog
+            </button>
+            <button 
               onClick={() => handleNavigation('/contact')}
               className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium"
             >
@@ -102,6 +108,12 @@ const Header: React.FC = () => {
                 className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium text-left"
               >
                 Specifications
+              </button>
+              <button 
+                onClick={() => navigate('/blog')}
+                className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium text-left"
+              >
+                Blog
               </button>
               <button 
                 onClick={() => handleNavigation('/contact')}
