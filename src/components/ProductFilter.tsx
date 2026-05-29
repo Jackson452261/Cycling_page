@@ -39,14 +39,14 @@ const ProductFilter: React.FC<FilterProps> = ({
           {/* Category Filter */}
           <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-2">
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-              Category:
+              目錄:
             </label>
             <select
               value={selectedCategory}
               onChange={(e) => onCategoryChange(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors duration-200"
             >
-              <option value="">All Categories</option>
+              <option value="">自行車品牌</option>
               {categories.map((category) => (
                 <option key={category} value={category}>
                   {category}
@@ -58,14 +58,14 @@ const ProductFilter: React.FC<FilterProps> = ({
           {/* Price Range Filter */}
           <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-2">
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-              Price Range:
+             價錢範圍:
             </label>
             <select
               value={selectedPriceRange}
               onChange={(e) => onPriceRangeChange(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors duration-200"
             >
-              <option value="">All Prices</option>
+              <option value="">所有價格</option>
               {priceRanges.map((range) => (
                 <option key={range.label} value={range.label}>
                   {range.label}
@@ -81,7 +81,7 @@ const ProductFilter: React.FC<FilterProps> = ({
               className="flex items-center space-x-1 text-red-600 hover:text-red-700 transition-colors duration-200"
             >
               <X size={16} />
-              <span className="text-sm">Clear Filters</span>
+              <span className="text-sm">清除篩選</span>
             </button>
           )}
         </div>

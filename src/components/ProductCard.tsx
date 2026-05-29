@@ -98,11 +98,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-gray-900">
-              ${price.toLocaleString()}
+              NT${price.toLocaleString('zh-TW')}
             </span>
             {originalPrice && (
               <span className="text-lg text-gray-500 line-through">
-                ${originalPrice.toLocaleString()}
+                NT${originalPrice.toLocaleString('zh-TW')}
               </span>
             )}
           </div>
@@ -110,7 +110,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             onClick={handleViewDetails}
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200"
           >
-            View Details
+            了解更多
           </button>
         </div>
       </div>

@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: "https://media.istockphoto.com/id/2196777835/photo/woman-riding-bike-on-flowering-grassland-mountain-top-trail.webp?a=1&b=1&s=612x612&w=0&k=20&c=oBMJlQxELcboEQFfpRTExSiIBVLsu3Hgc0biwjcwaG4=",
-      title: "Engineered for",
-      highlight: "Performance",
+      image: "https://shoplineimg.com/62b000d1ebcca800681ae739/69e5b6626cf04eb895fdcf34/375x.webp?source_format=png",
+      title: "【Specialized】Sirrus X 5.0",
+      highlight: "城市車成車 / 金色",
       stats: [
-        { value: "6.8kg", label: "Ultra-lightweight" },
-        { value: "22 Speed", label: "Shimano Ultegra" },
-        { value: "Aero", label: "Wind-cutting design" }
+        { value: "Future Shock 1.5 減震系統", label: "吸收路面震動" },
+        { value: "可更直挺舒適騎姿", label: "配更寬穩定外胎" },
+        { value: "適用日常城市通勤、運動、出遊、礫石等多形路段", label: " " }
       ]
     },
     {
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-      title: "Built for",
-      highlight: "Adventure",
+      image: "https://shoplineimg.com/62b000d1ebcca800681ae739/697878debb83b1a1fbaba986/375x.webp?source_format=png",
+      title: "絕版出清【PINARELLO】F9 車架組 ",
+      highlight: "G210 Blue Sapphire 湖水綠",
       stats: [
-        { value: "Carbon", label: "Frame material" },
-        { value: "Tubeless", label: "Ready wheels" },
-        { value: "All-terrain", label: "Capability" }
+        { value: "新塗裝 G210 Blue Sapphire 湖水綠，適合有個性、亮麗大顯身手的你", label: " " },
+        { value: " ", label: " " },
+        { value: " ", label: " " }
       ]
     },
     {
-      image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      title: "Designed for",
-      highlight: "Speed",
+      image: "https://shoplineimg.com/62b000d1ebcca800681ae739/6933cf66d23cd8001489abd3/800x.webp?source_format=png",
+      title: "新色【Pinarello】NEW DOGMA F 車架組",
+      highlight: "G117 星耀紅",
       stats: [
-        { value: "Pro", label: "Racing geometry" },
-        { value: "Disc", label: "Hydraulic brakes" },
-        { value: "Electronic", label: "Shifting system" }
+        { value: "更輕、更空力卻舒適，較前代少約 108g", label: " " },
+        { value: "全新 M40X 碳纖材質、各部件全新設計更為空力外", label: " " },
+        { value: "相容更大的胎寬32mm ", label: " " }
       ]
     }
   ];
@@ -51,90 +51,84 @@ const Hero: React.FC = () => {
 
   // Auto-play functionality
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-      {/* Background Images with Transition */}
-      <div className="absolute inset-0 z-0">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <img
-              src={slide.image}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover opacity-40"
+    <section className="relative h-[65vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 mt-16">
+      {/* Subtle light overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/40 via-transparent to-transparent pointer-events-none" />
+
+      {/* ── Left: Text content ── */}
+      <div className="relative z-10 flex-1 px-8 md:px-14 lg:px-20 flex flex-col justify-center">
+        {/* 新車公告徽章 */}
+        <div className="mb-5">
+          <span className="inline-flex items-center gap-2 bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg animate-pulse">
+            <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+            2025–2026 新車
+            <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+          </span>
+        </div>
+
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+          {slides[currentSlide].title}
+          <span className="text-red-600 block">{slides[currentSlide].highlight}</span>
+        </h1>
+
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          {slides[currentSlide].stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white/70 backdrop-blur-sm rounded-lg px-4 py-3 hover:bg-white/90 transition-colors duration-300 shadow-sm"
+            >
+              <div className="text-xl font-bold text-gray-900">{stat.value}</div>
+              <div className="text-xs text-gray-500">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Slide dots */}
+        <div className="flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-red-500 scale-125' : 'bg-gray-400 hover:bg-gray-600'
+              }`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-          </div>
-        ))}
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
-      >
-        <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-      </button>
-      
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
-      >
-        <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-      </button>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            {slides[currentSlide].title}
-            <span className="text-red-500 block">{slides[currentSlide].highlight}</span>
-          </h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {slides[currentSlide].stats.map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-colors duration-300"
-              >
-                <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-gray-300">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-        {slides.map((_, index) => (
-          <button
+      {/* ── Right: Contained image ── */}
+      <div className="relative z-10 w-[42%] h-full flex items-center justify-center shrink-0 pr-6">
+        {/* Prev / Next arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-2 transition-all duration-300"
+        >
+          <ChevronLeft className="w-5 h-5 text-white" />
+        </button>
+
+        {slides.map((slide, index) => (
+          <img
             key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-red-500 scale-125'
-                : 'bg-white/50 hover:bg-white/70'
+            src={slide.image}
+            alt={`Slide ${index + 1}`}
+            className={`absolute h-[85%] w-full object-contain transition-opacity duration-1000 drop-shadow-2xl ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           />
         ))}
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-2 transition-all duration-300"
+        >
+          <ChevronRight className="w-5 h-5 text-white" />
+        </button>
       </div>
     </section>
   );
